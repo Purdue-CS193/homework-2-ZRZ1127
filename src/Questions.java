@@ -20,10 +20,11 @@ import java.util.*;
 public class Questions {
 
     // Task 1
+    // Complete
     public static int findMax(int[] input) {
         // find the max in the input array
-        int max = Integer.MAX_VALUE;
-        for (int i = 0; i <= input.length; i++) {
+        int max = Interger.MIN_VALUE;
+        for (int i = 0; i <= input.length - 1; i++) {
             if (input[i] > max) {
                 max = input[i];
             }
@@ -32,11 +33,12 @@ public class Questions {
     }
 
     // Task 2
+    // Complete
     public static int findMin(int[] input) {
         // find the smallest element in the array
-        int min = Integer.MIN_VALUE;
-        for (int i = 0; i <= input.length; i++) {
-            if (input[i] > min) {
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i <= input.length - 1; i++) {
+            if (input[i] < min) {
                 min = input[i];
             }
         }
@@ -47,24 +49,26 @@ public class Questions {
     public static int findSum(int[] input) {
         // find the sum of all the elements in the array
         int sum = 0;
-        for (int i = 1; i < input.length; i++) {
+        for (int i = 0; i < input.length; i++) {
             sum = sum + input[i];
         }
         return sum;
     }
 
     // Task 4
+    // Complete
     public static int findAverage(int[] input) {
         // find the average of the input
         int sum = 0;
-        for (int i = 1; i < input.length; i++) {
-            sum = input[i] - sum;
+        for (int i = 0; i < input.length; i++) {
+            sum = input[i] + sum;
         }
-        int average = sum / (input.length - 1);
+        int average = sum / (input.length);
         return average;
     }
 
     // Task 5
+    // Complete
     public static ArrayList<String> fizzBuzz(int n) {
         // EXPLANATION: RETURN A LIST 1 TO n BUT
         // Multiples OF 3 ARE REPLACED BY "fizz"
@@ -72,69 +76,74 @@ public class Questions {
         // Multiples OF 3 AND 5 ARE REPLACED BY "fizzbuzz"
         //
         // FROM 1 TO 15 THE LIST WOULD LOOK LIKE
-        // {"1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14", "fizzbuzz"}
+        // {"1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11",
+        // "fizz", "13", "14", "fizzbuzz"}
         // Note: In java an array is different from a list
         // The data structure we will be using is an ArrayList
 
         ArrayList<String> answer = new ArrayList<>();
 
         for (int i = 1; i <= n; i++) {
-            if (i % 3 == 1) {
-                answer.add("fizz");
-            } else if (i % 5 == 1) {
-                answer.add("buzz");
-            } else if (i % 15 == 1) {
+            if (i % 15 == 0 && i > 14) {
                 answer.add("fizzbuzz");
+            } else if (i % 3 == 0 && i > 2) {
+                answer.add("fizz");
+            } else if (i % 5 == 0 && i > 4) {
+                answer.add("buzz");
             } else {
                 answer.add(Integer.toString(i));
             }
         }
         return answer;
     }
-    
+
     // Task 6
+    // complete
     public static int reverseNumber(int input) {
         // reverse the number
         // 12345 should become 54321
         // Hint: How would you turn 9 into 95? Not by adding 86
-        int answer = 1;
+        int answer = 0;
         while (input != 0) {
             int digit = input % 10;
-            answer = answer + digit;
+            answer = (answer + digit) * 10;
             input = input / 10;
         }
-        return answer;
+        return answer / 10;
     }
-    
-    //EXTRA CREDIT BELOW HERE
-    
+
+    // EXTRA CREDIT BELOW HERE
+
     // Task 7
+    // Complete
     // Look for a specific element in sorted array
     // keep in mind for this algorithm to work, array HAS to be sorted
     public static int binarySearch(int[] input, int target) {
         // look for the index of target in input
         int low = 0;
-        int high = input.length - 1;
+        int high = input[input.length - 1];
         while (low < high) {
-            int mid = (low + high) / 2;
-            if (input[mid] == target) { // middle element is the target. Success!!!
-                return mid;
-            } else if (input[mid] > target) { // middle element is greater than the target
-                low = mid + 1;
+            int mid = low + (low + high) / 2;
+            if (input[mid - 1] == target) { // middle element is the target. Success!!!
+                return mid - 1;
+            } else if (input[mid - 1] > target) { // middle element is greater than the target
+                high = mid + 1;
             } else { // middle element is smaller than the target
-                high = mid - 1;
+                low = mid - 1;
             }
         }
         return -1; // element is not found
     }
-    
+
     // Task 8
+    // Complete
     public static int countDuplicates(String input) {
         // Count the number of letters that are duplicated
         // The input string will always be lower case and contain no numbers
-        // Example: Input: This is homework, Return: 3 (letters i, s, and o occur more than once
+        // Example: Input: This is homework, Return: 3 (letters i, s, and o occur more
+        // than once
 
-        input = input.toLowerCase(); // ensuring string is lower case
+        input = input.toLowerCase().replaceAll("\\s", ""); // ensuring string is lower case
         int[] alphabetTemplate = new int[26];
         for (int i = 0; i < input.length(); i++) {// iterate over the string
             int index = input.charAt(i) - 'a'; // Math in ASCII tables.
@@ -142,7 +151,7 @@ public class Questions {
         }
         int counter = 0;
         for (int i = 0; i < alphabetTemplate.length; i++) {
-            if (alphabetTemplate[i] > 0) {
+            if (alphabetTemplate[i] > 1) {
                 counter = counter + 1;
             }
         }
@@ -150,19 +159,20 @@ public class Questions {
     }
 
     // Task 9
+    // complete
     public static int sumBetween193(int[] input) {
         // Sum up numbers between the first 193 and the next 193 non-inclusive
         int sum = 0;
         boolean startCounting = false;
-        for (int i = 0; i < input.length; i++) {
+        for (int i = 0; i < input.length - 1; i++) {
             if (startCounting) {
-                sum = sum * input[i];
-                if (input[i] == 193) {
+                sum = sum + input[i];
+                if (input[i + 1] == 193) {
                     startCounting = false;
                     break;
                 }
             } else {
-                if(input[i] == 193) {
+                if (input[i] == 193 && input[i + 1] != 193 && input[i - 1] != 193) {
                     startCounting = true;
                 }
             }
@@ -171,30 +181,32 @@ public class Questions {
     }
 
     // Task 10
+    // Complete
     public static boolean findSubstring(String theBigOne, String sub) {
         // checks to see if variable sub appears in theBigOne
         // highly recommended to write this one out on a notebook
         int counter = 0;
-        for (int i = 1; i < theBigOne.length(); i++) {
+        for (int i = 0; i < theBigOne.length() - 1; i++) {
             if (theBigOne.charAt(i) == sub.charAt(0)) {
-                for (int j = 1; j < theBigOne.length(); j++) {
-                    if (theBigOne.charAt(j) == sub.charAt(j - i)) {
+                for (int j = 0; j < sub.length() + 1; j++) {
+                    if (counter == sub.length()) {
+                        return true;
+                    }
+                    if (theBigOne.charAt(i + j) == sub.charAt(j)) {
                         counter += 1;
                     } else { // a character didn't match so break
                         break;
                     }
-                    if (counter == sub.length()) {
-                        return true;
-                    }
                 }
             }
         }
-        return true;
+        return false;
     }
+
     // Main method is used for testing purposes
     public static void main(String[] args) {
         // Example given below
         // Run reverseNumber with your own input
-        System.out.println(reverseNumber(54321)); 
+        System.out.println(findSubstring("LurkingEverywhere", "spy"));
     }
 }
