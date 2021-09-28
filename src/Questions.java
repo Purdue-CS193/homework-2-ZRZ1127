@@ -23,7 +23,7 @@ public class Questions {
     // Complete
     public static int findMax(int[] input) {
         // find the max in the input array
-        int max = Interger.MIN_VALUE;
+        int max = Integer.MIN_VALUE;
         for (int i = 0; i <= input.length - 1; i++) {
             if (input[i] > max) {
                 max = input[i];
