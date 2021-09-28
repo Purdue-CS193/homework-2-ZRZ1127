@@ -207,6 +207,6 @@ public class Questions {
     public static void main(String[] args) {
         // Example given below
         // Run reverseNumber with your own input
-        System.out.println(fizzBuzz(30));
+        System.out.println(fizzBuzz(45));
     }
 }
