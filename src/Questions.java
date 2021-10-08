@@ -24,7 +24,7 @@ public class Questions {
     public static int findMax(int[] input) {
         // find the max in the input array
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i <= input.length-1; i++) {
+        for (int i = 0; i <= input.length - 1; i++) {
             if (input[i] > max) {
                 max = input[i];
             }
@@ -37,7 +37,7 @@ public class Questions {
     public static int findMin(int[] input) {
         // find the smallest element in the array
         int min = Integer.MAX_VALUE;
-        for (int i = 0; i <= input.length-1; i++) {
+        for (int i = 0; i <= input.length - 1; i++) {
             if (input[i] < min) {
                 min = input[i];
             }
@@ -205,5 +205,8 @@ public class Questions {
 
     // Main method is used for testing purposes
     public static void main(String[] args) {
+        // Example given below
+        // Run reverseNumber with your own input
+        System.out.println(fizzBuzz(45));
     }
 }
